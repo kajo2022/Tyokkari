@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" th:rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" th:rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<script>
+		0
+	</script>
+	<div th:replace="segments :: menu (title='Pestit')"></div>
+	<div class="d-flex justify-content-center mt-4 mb-4">
+	</div>
+	<div class="container">
+	<div>
+	
+	<form th:object="${task}" th:action="@{/tallenna}" method="post" action="#">
+			<div class="row mb-3 mt-3">
+				
+				<label for="otsikko" class="form-label mt-3">Pestin nimi</label> 	
+				<input type="text" class="form-control" id="otsikko" th:field="*{taskName}" /> 
+					
+				<label for="start" class="form-label mt-3">Pestin paikka</label> 
+				<input type="text" class="form-control" id="start" th:field="*{location}" />
+
+				<label for="end" class="form-label mt-3">Pestin päivä</label> 
+				<input type="date" class="form-control" id="start" th:field="*{date}" />
+				
+				<label for="time" class="form-label mt-3">Pestin aika</label> 
+				<input type="time" name="time" class="form-control" id="start" th:field="*{time}" />
+
+				<label for="paikka" class="form-label mt-3">Kuvaus</label> <input
+					type="text" class="form-control" id="paikka" th:field="*{description}" />
+
+				<label for="aalto" class="form-label mt-3">Taidot</label>
+				<input type="text" class="form-control" id="aalto" th:field="*{skills}" /> 
+				
+				<label for="level" class="form-label mt-3">Taitotaso</label> 
+				<select id="level" class="form-select" th:field="*{level}">
+					<option th:value="1">Ei taitovaatimuksia</option>
+					<option th:value="2">Jotain taitovaatimuksia</option>
+					<option th:value="3">Ekspertti</option>
+				</select> 
+				
+				<label for="pestaaja" class="form-label mt-3">Pestaajan nimi</label> 	
+				<input type="text" class="form-control" id="pestaaja" th:field="*{taskerName}" /> 
+				
+				<label for="phone" class="form-label mt-3">Pestaajan puhelin</label> 	
+				<input type="text" class="form-control" id="phone" th:field="*{taskerPhone}" /> 
+				
+				<label for="ttask" class="form-label mt-3">Pestaajan pesti</label> 	
+				<input type="text" class="form-control" id="ttask" th:field="*{taskerTask}" /> 
+					
+				<label for="ac" class="form-label mt-3">Aktiivinen?</label> 
+				<input type="radio" name="check" value="true" class="form-check-input" id="ac" th:field="*{isActive}" />
+				<label for="ac" class="form-check-label">TRUE</label>
+				<input type="radio" name="check" value="false" class="form-check-input" id="ac" th:field="*{isActive}" /> 
+				<label for="ac" class="form-check-label">FALSE</label> 
+					
+				<input type="submit" value="Save"
+					class="btn btn-success mx-auto d-block mb-2 mt-2" />
+			</div>
+		</form>>
+</div>
+	
+	
+
+		<div class="d-flex justify-content-center mt-4 mb-4">
+	</div>
+	</div>
+
+</body>
+</html>

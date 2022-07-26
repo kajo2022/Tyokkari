@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" th:rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" th:rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<script>
+		0
+	</script>
+	<div th:replace="segments :: menu (title='Pestit')"></div>
+	<div class="d-flex justify-content-center mt-4 mb-4">
+	</div>
+	<div class="container">
+	<div>
+	<p>Suodata</p>
+	<input type="radio" id=active name=active value=true>
+	<label for="active">Näytä vain aktiiviset</label><br>
+	<input type="radio" id=inactive name=active value=false>
+	<label for="active">Näytä vain ei-aktiiviset</label><br>
+	<input type="radio" id=all name=active checked value="">
+	<label for="active">Näytä kaikki</label><br>
+	<button onclick="filter()">Suodata</button>
+	</div>
+	<table id="mainTable" class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Pesti-id</th>
+					<th>Pestaajan nimi</th>
+					<th>Pestaajan puh</th>
+					<th>Pestaajan pesti</th>
+					<th>Pesti</th>
+					<th>Paikka</th>
+					<th>PVM</th>
+					<th>Aika</th>
+					<th>Taidot</th>
+					<th>Kuvaus</th>
+					<th>Aktiivinen?</th>
+					<th>Hallinta</th>
+				</tr>
+			</thead>
+			<tr th:each="task :${tasks}" th:id="${task.getIsActive()}" class="rics" data-name="#{task.getId()}" data-active=#{task.getIsActive()}>
+				<td th:text=${task.getId()}>ID</td>
+				<td th:text=${task.getTaskerName()}>LeiriApp</td>
+				<td th:text=${task.getTaskerPhone()}>Paikka</td>
+				<td th:text=${task.getTaskerTask()}>Aalto</td>				
+				<td th:text=${task.getTaskName()}>Otsikko</td>
+				<td th:text=${task.getLocation()}>Paikka</td>
+				<td th:text=${task.getDate()}>Aalto</td>
+				<td th:text=${task.getTime()}>LeiriApp</td>
+				<td th:text=${task.getSkills()}>Paikka</td>
+				<td th:text=${task.getDescription()}>Aalto</td>
+				<td th:text=${task.getIsActive()}>Aalto</td>
+				<td>
+				<a th:href=@{taskdel/{id}(id=${task.getId()})}
+					onclick="return confirm('Oletko varma?')"
+					class="deleteText">Poista</a> 
+				<a
+					th:href=@{taskedit/{id}(id=${task.getId})} class="editText">Muokkaa</a></td>
+			</tr>
+		</table>
+	
+
+		<div class="d-flex justify-content-center mt-4 mb-4">
+	</div>
+	</div>
+
+</body>
+<script>
+
+
+function hider(nodeList) {
+	let len = nodeList.length
+	for (let i = 0; i < len; i++) {
+		nodeList[i].style.display = 'none'
+	}
+}
+
+function shower(nodeList) {
+	let len = nodeList.length
+	for (let i = 0; i < len; i++) {
+		nodeList[i].style.display = ''
+	}
+}
+
+
+function filter(){
+	const checked = document.querySelector("input[name='active']:checked").value
+	
+	switch(checked) {
+	case 'true':
+		const falseRows = document.querySelectorAll("#false")
+		hider(falseRows)
+		return;
+	case 'false':
+		const trueRows = document.querySelectorAll("#true")
+		hider(trueRows)
+		return;
+	case "":
+		const rw = document.getElementsByClassName("rics")
+		shower(rw)
+		return
+	default: 
+		return; 
+	}
+}
+
+
+</script>
+</html>

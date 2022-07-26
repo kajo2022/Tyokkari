@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" th:rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" th:rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<script>
+		0
+	</script>
+	<div th:replace="segments :: menu (title='Ilmoittautumiset')"></div>
+	<div class="d-flex justify-content-center mt-4 mb-4">
+	</div>
+	<div class="container">
+	<table id="mainTable" class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Ilmo-ID</th>
+					<th>Pestin nimi</th>
+					<th>Pestin ID</th>
+					<th>Nimi</th>
+					<th>LPK</th>
+					<th>Puhelin</th>
+					<th>Lisätiedot</th>
+					<th>Hallinta</th>
+				</tr>
+			</thead>
+			<tr th:each="sigs :${signups}">
+				<td th:text=${sigs.getId()}>ID</td>
+				<td th:text=${sigs.getTaskName()}>LeiriApp</td>
+				<td th:text=${sigs.getTaskId()}>Paikka</td>
+				<td th:text="${sigs.getFirstName() + ' ' + sigs.getLastName()}">Aalto</td>				
+				<td th:text=${sigs.getLpk()}>Paikka</td>
+				<td th:text=${sigs.getPhone()}>Aalto</td>
+				<td th:text=${sigs.getInfo()}>LeiriApp</td>
+				<td>
+				<a th:href=@{sigdel/{id}(id=${sigs.getId()})}
+					onclick="return confirm('Oletko varma?')"
+					class="deleteText">Poista</a> 
+				</td>
+				
+			</tr>
+		</table>
+	
+
+		<div class="d-flex justify-content-center mt-4 mb-4">
+	</div>
+	</div>
+
+</body>
+</html>

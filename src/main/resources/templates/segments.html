@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+
+	<header th:fragment="menu (title)">
+		<nav class="navbar navbar-expand navbar-dark bg-dark">
+			<div class="container">
+				<a class="navbar-brand" th:href=@{/}>Kajo Työkkäri</a>
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" th:href=@{/tasks}>Kaikki pesti-ilmoitukset</a></li>
+						<li class="nav-item"><a class="nav-link" th:href=@{/signs}>Kaikki osallistuja-ilmot</a></li>
+						<li class="nav-item"><a class="nav-link" th:href=@{/create}>Luo pesti</a></li>
+						<li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" th:href=@{/login}>Kirjaudu sisään</a></li>
+						<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href=@{/logout}>Uloskirjaus</a></li>
+					</ul>
+				</div>
+				
+			</div>
+		</nav>
+
+		<div class="p-5 text-center"
+			style="height: 175px; 
+			background: rgb(30,40,105);
+			background: linear-gradient(90deg, rgba(30,40,105,1) 0%, rgba(170,80,200,1) 30%, rgba(150,230,230,1) 70%, rgba(248,234,72,1) 100%); 
+			background-size: cover;">
+			<h4 class="mb-3" th:text="${title}">Subheading</h4>
+
+		</div>
+	</header>
+
+</body>
+</html>
